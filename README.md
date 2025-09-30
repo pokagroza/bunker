@@ -140,16 +140,6 @@ cd ../server && npm start
 - **Phobias & Traits** - Character depth
 - **5 Disaster Scenarios** - Nuclear war, zombies, climate change, asteroid, pandemic
 
-## 🌟 Screenshots
-
-<div align="center">
-
-| Web Version | Mobile App | Admin Panel |
-|-------------|------------|-------------|
-| ![Web](https://via.placeholder.com/200x120/1a1a1a/00ff88?text=Web+Game) | ![Mobile](https://via.placeholder.com/200x120/1a1a1a/00ff88?text=Mobile+App) | ![Admin](https://via.placeholder.com/200x120/1a1a1a/ffaa00?text=Admin+Panel) |
-
-</div>
-
 ## 🤝 Contributing
 
 1. Fork the repository
