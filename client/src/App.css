@@ -1,0 +1,652 @@
+/* CSS для компонентов игры в стиле бункера */
+
+/* Главное меню */
+.main-menu {
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeIn 1s ease;
+}
+
+.menu-container {
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  border: 3px solid var(--bunker-glow);
+  box-shadow: 
+    0 0 30px var(--bunker-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, var(--bunker-glow), transparent);
+  animation: topGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes topGlow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.game-description {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.game-description h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  color: var(--bunker-glow);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px var(--bunker-glow);
+}
+
+.game-description p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: var(--bunker-text);
+}
+
+.game-description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.game-description li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--bunker-border);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.game-description li:hover {
+  color: var(--bunker-glow);
+  padding-left: 1rem;
+}
+
+.menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.player-form {
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  padding: 2rem;
+  border: 2px solid var(--bunker-border);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.player-form::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--bunker-glow), var(--bunker-accent));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.player-form:hover::before {
+  opacity: 0.3;
+}
+
+.player-form h3 {
+  font-family: 'Orbitron', monospace;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.divider {
+  color: var(--bunker-text-dim);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 1px;
+  background: var(--bunker-border);
+}
+
+.divider::before { left: -70px; }
+.divider::after { right: -70px; }
+
+/* Лобби */
+.lobby {
+  width: 100%;
+  max-width: 1400px;
+  animation: fadeIn 1s ease;
+}
+
+.lobby-container {
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  border: 3px solid var(--bunker-glow);
+  box-shadow: 
+    0 0 30px var(--bunker-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  position: relative;
+}
+
+.lobby-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--bunker-border);
+}
+
+.lobby-header h2 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.room-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.room-id {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  color: var(--bunker-text);
+}
+
+.room-id strong {
+  color: var(--bunker-glow);
+  background: var(--bunker-darker);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--bunker-glow);
+  margin-left: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.lobby-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.players-section h3,
+.scenario-section h3 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.players-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.player-card {
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  border: 2px solid var(--bunker-border);
+  padding: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.player-card:hover {
+  border-color: var(--bunker-glow);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.player-card.host {
+  border-color: var(--bunker-caution);
+  background: 
+    linear-gradient(135deg, rgba(255, 170, 0, 0.1) 0%, var(--bunker-dark) 100%);
+}
+
+.player-name {
+  font-weight: 600;
+  color: var(--bunker-text);
+  font-size: 1.1rem;
+}
+
+.host-badge {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--bunker-caution);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.waiting-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--bunker-text-dim);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.scenarios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.scenario-card {
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  border: 2px solid var(--bunker-border);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.scenario-card:hover {
+  border-color: var(--bunker-glow);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.scenario-card.selected {
+  border-color: var(--bunker-glow);
+  background: 
+    linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, var(--bunker-dark) 100%);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.scenario-card h4 {
+  color: var(--bunker-glow);
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.scenario-card p {
+  color: var(--bunker-text);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.scenario-details small {
+  color: var(--bunker-text-dim);
+  font-size: 0.9rem;
+}
+
+.lobby-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 2px solid var(--bunker-border);
+}
+
+.waiting-host {
+  color: var(--bunker-text-dim);
+  font-style: italic;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Игровое поле */
+.game {
+  width: 100%;
+  max-width: 1600px;
+  animation: fadeIn 1s ease;
+}
+
+.game-container {
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  border: 3px solid var(--bunker-glow);
+  box-shadow: 
+    0 0 30px var(--bunker-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  position: relative;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--bunker-border);
+}
+
+.game-header h2 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.scenario-description {
+  font-size: 1.1rem;
+  color: var(--bunker-text);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.game-info span {
+  background: var(--bunker-darker);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--bunker-border);
+  color: var(--bunker-text);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+}
+
+.game-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-character-section {
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+}
+
+.my-character-section h3 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.players-section h3,
+.game-log-section h3 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.player-info {
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  border: 2px solid var(--bunker-border);
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.player-info:hover {
+  border-color: var(--bunker-glow);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.player-info.own {
+  border-color: var(--bunker-caution);
+  background: 
+    linear-gradient(135deg, rgba(255, 170, 0, 0.1) 0%, var(--bunker-dark) 100%);
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.player-name {
+  font-weight: 600;
+  color: var(--bunker-text);
+  font-size: 1.1rem;
+}
+
+.revealed-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.revealed-card {
+  background: var(--bunker-panel);
+  padding: 0.5rem;
+  border-left: 3px solid var(--bunker-glow);
+  font-size: 0.9rem;
+}
+
+.revealed-card strong {
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.game-log {
+  background: var(--bunker-darker);
+  border: 2px solid var(--bunker-border);
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--bunker-border);
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.log-time {
+  color: var(--bunker-text-dim);
+  font-size: 0.8rem;
+  font-family: 'Orbitron', monospace;
+  min-width: 80px;
+}
+
+.log-message {
+  color: var(--bunker-text);
+  flex: 1;
+}
+
+.game-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 2px solid var(--bunker-border);
+}
+
+.game-tips {
+  color: var(--bunker-text-dim);
+  font-style: italic;
+  text-align: center;
+  flex: 1;
+}
+
+.game-result {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: 
+    linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, var(--bunker-dark) 100%);
+  border: 2px solid var(--bunker-glow);
+}
+
+.game-result h2 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.survivors {
+  margin-top: 1rem;
+}
+
+.survivors h3 {
+  color: var(--bunker-success);
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+}
+
+.survivor {
+  background: var(--bunker-darker);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  display: inline-block;
+  border: 1px solid var(--bunker-success);
+  color: var(--bunker-success);
+}
+
+/* Адаптивность для компонентов */
+@media (max-width: 1200px) {
+  .lobby-content,
+  .game-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-container,
+  .lobby-container,
+  .game-container {
+    padding: 1.5rem;
+  }
+  
+  .game-description h2 {
+    font-size: 2rem;
+  }
+  
+  .game-info {
+    gap: 1rem;
+  }
+  
+  .game-info span {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lobby-actions,
+  .game-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lobby-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .room-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Стили для админ-панели в MainMenu */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-description {
+  color: var(--bunker-text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255, 170, 0, 0.1);
+  border: 1px solid var(--bunker-warning);
+  border-radius: 4px;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8e35 100%);
+  border: 2px solid #ff6b35;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #ff8e35 0%, #ffaa35 100%);
+  border-color: #ff8e35;
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-warning:active {
+  transform: translateY(0);
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+@media (max-width: 768px) {
+  .menu-buttons {
+    gap: 0.8rem;
+  }
+  
+  .admin-description {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+  }
+}

@@ -1,0 +1,452 @@
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* CSS переменные для бункера */
+:root {
+  --bunker-dark: #0a0a0a;
+  --bunker-darker: #050505;
+  --bunker-metal: #1a1a1a;
+  --bunker-panel: #222222;
+  --bunker-border: #333333;
+  --bunker-glow: #00ff88;
+  --bunker-warning: #ff4444;
+  --bunker-caution: #ffaa00;
+  --bunker-accent: #0099ff;
+  --bunker-text: #e0e0e0;
+  --bunker-text-dim: #999999;
+  --bunker-shadow: rgba(0, 255, 136, 0.3);
+  --bunker-danger: #cc0000;
+  --bunker-success: #00cc44;
+}
+
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', monospace;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 50%, var(--bunker-metal) 100%);
+  color: var(--bunker-text);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Анимация мерцания экрана */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 136, 0.03) 2px,
+      rgba(0, 255, 136, 0.03) 4px
+    );
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(4px); }
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Заголовок в стиле бункера */
+.App-header {
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 3px solid var(--bunker-glow);
+  box-shadow: 
+    0 0 20px var(--bunker-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.App-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 136, 0.1),
+    transparent
+  );
+  animation: sweep 3s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.App-header h1 {
+  font-family: 'Orbitron', monospace;
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-shadow: 
+    0 0 10px var(--bunker-glow),
+    0 0 20px var(--bunker-glow),
+    0 0 30px var(--bunker-glow);
+  letter-spacing: 3px;
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+}
+
+.App-header p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  color: var(--bunker-text);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Основной контент */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: 
+    radial-gradient(ellipse at center, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
+}
+
+/* Сообщения об ошибках в стиле тревоги */
+.error-message {
+  background: 
+    linear-gradient(135deg, var(--bunker-danger) 0%, #990000 100%);
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem 2rem;
+  border-radius: 0;
+  border: 2px solid var(--bunker-warning);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: alertBlink 1s ease-in-out infinite alternate;
+  box-shadow: 
+    0 0 15px var(--bunker-warning),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+@keyframes alertBlink {
+  0% { box-shadow: 0 0 15px var(--bunker-warning), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+  100% { box-shadow: 0 0 25px var(--bunker-warning), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+}
+
+.error-message button {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.error-message button:hover {
+  background: white;
+  color: var(--bunker-danger);
+  transform: scale(1.1);
+}
+
+/* Кнопки в стиле бункера */
+.btn {
+  background: linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  color: var(--bunker-glow);
+  border: 2px solid var(--bunker-glow);
+  padding: 0.8rem 2rem;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 140px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 136, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 136, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, var(--bunker-glow) 0%, #00cc77 100%);
+  color: var(--bunker-dark);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 20px var(--bunker-glow),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-primary {
+  border-color: var(--bunker-success);
+  color: var(--bunker-success);
+}
+
+.btn.btn-primary:hover {
+  background: linear-gradient(135deg, var(--bunker-success) 0%, #00aa33 100%);
+  color: var(--bunker-dark);
+  box-shadow: 
+    0 0 20px var(--bunker-success),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-secondary {
+  border-color: var(--bunker-text-dim);
+  color: var(--bunker-text-dim);
+}
+
+.btn.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--bunker-text-dim) 0%, #777777 100%);
+  color: var(--bunker-dark);
+}
+
+.btn.btn-danger {
+  border-color: var(--bunker-warning);
+  color: var(--bunker-warning);
+}
+
+.btn.btn-danger:hover {
+  background: linear-gradient(135deg, var(--bunker-warning) 0%, #cc3333 100%);
+  color: var(--bunker-dark);
+  box-shadow: 
+    0 0 20px var(--bunker-warning),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-success {
+  border-color: var(--bunker-success);
+  color: var(--bunker-success);
+}
+
+.btn.btn-success:hover {
+  background: linear-gradient(135deg, var(--bunker-success) 0%, #00aa33 100%);
+  color: var(--bunker-dark);
+}
+
+.btn.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  min-width: auto;
+}
+
+.btn.disabled,
+.btn:disabled {
+  background: var(--bunker-border);
+  border-color: var(--bunker-border);
+  color: var(--bunker-text-dim);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn.disabled:hover,
+.btn:disabled:hover {
+  background: var(--bunker-border);
+  color: var(--bunker-text-dim);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Формы в стиле терминала */
+input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--bunker-border);
+  border-radius: 0;
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  color: var(--bunker-glow);
+  font-size: 1rem;
+  font-family: 'Rajdhani', monospace;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--bunker-glow);
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(0, 255, 136, 0.3);
+  background: 
+    linear-gradient(135deg, var(--bunker-dark) 0%, var(--bunker-panel) 100%);
+}
+
+input[type="text"]::placeholder {
+  color: var(--bunker-text-dim);
+  font-style: italic;
+}
+
+/* Анимации */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--bunker-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--bunker-glow), 0 0 30px var(--bunker-glow);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+/* Эффект голограммы */
+.hologram {
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 136, 0.1) 2px,
+      rgba(0, 255, 136, 0.1) 4px
+    );
+  animation: hologramScan 2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hologramScan {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 1rem;
+  }
+  
+  .App-header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"] {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+    min-width: 120px;
+  }
+}

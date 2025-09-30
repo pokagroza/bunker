@@ -1,0 +1,526 @@
+/* CSS для карточек персонажей в стиле бункера */
+
+.character-card {
+  background: 
+    linear-gradient(135deg, var(--bunker-darker) 0%, var(--bunker-dark) 100%);
+  border: 3px solid var(--bunker-border);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  animation: cardAppear 0.8s ease;
+}
+
+.character-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--bunker-glow), var(--bunker-accent));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.character-card:hover::before {
+  opacity: 0.2;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.character-trait {
+  background: var(--bunker-panel);
+  border: 2px solid var(--bunker-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.character-trait:hover {
+  border-color: var(--bunker-glow);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.character-trait.revealed {
+  border-color: var(--bunker-glow);
+  background: 
+    linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, var(--bunker-panel) 100%);
+}
+
+.character-trait.own {
+  cursor: pointer;
+}
+
+.trait-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: var(--bunker-darker);
+  border-bottom: 1px solid var(--bunker-border);
+}
+
+.trait-icon {
+  font-size: 1.5rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.trait-name {
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.trait-content {
+  padding: 1rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trait-value {
+  color: var(--bunker-text);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.trait-hidden {
+  width: 100%;
+  text-align: center;
+}
+
+.hidden-card-own {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hidden-preview {
+  color: var(--bunker-text-dim);
+  font-size: 0.95rem;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed var(--bunker-border);
+  border-radius: 4px;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.btn-reveal {
+  background: linear-gradient(135deg, var(--bunker-glow) 0%, #00cc77 100%);
+  color: var(--bunker-dark);
+  border: 2px solid var(--bunker-glow);
+  padding: 0.6rem 1.2rem;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-reveal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-reveal:hover::before {
+  left: 100%;
+}
+
+.btn-reveal:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 20px var(--bunker-glow),
+    0 5px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #00ff88 0%, #00aa55 100%);
+}
+
+.btn-reveal:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 0 15px var(--bunker-glow),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hidden-card-other {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem;
+}
+
+.hidden-placeholder {
+  color: var(--bunker-text-dim);
+  font-size: 2rem;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--bunker-text-dim);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.character-summary {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  border: 2px solid var(--bunker-border);
+  border-top: 3px solid var(--bunker-glow);
+}
+
+.character-summary p {
+  color: var(--bunker-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.character-summary strong {
+  color: var(--bunker-glow);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  background: var(--bunker-darker);
+  border: 1px solid var(--bunker-border);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  color: var(--bunker-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Интерфейс голосования */
+.voting-interface {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.voting-container {
+  background: 
+    linear-gradient(135deg, var(--bunker-panel) 0%, var(--bunker-metal) 100%);
+  border: 3px solid var(--bunker-warning);
+  box-shadow: 
+    0 0 40px rgba(255, 68, 68, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  animation: voteAppear 0.6s ease;
+}
+
+@keyframes voteAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.voting-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, var(--bunker-warning), transparent);
+  animation: topGlowRed 1s ease-in-out infinite alternate;
+}
+
+@keyframes topGlowRed {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.voting-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.voting-header h3 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-warning);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px var(--bunker-warning);
+}
+
+.voting-target {
+  background: var(--bunker-darker);
+  padding: 1rem;
+  border: 2px solid var(--bunker-warning);
+  margin-bottom: 1rem;
+}
+
+.target-label {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-text-dim);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.target-name {
+  color: var(--bunker-warning);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.voting-question {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.voting-question p {
+  color: var(--bunker-text);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.voting-question strong {
+  color: var(--bunker-warning);
+}
+
+.voting-rule {
+  color: var(--bunker-text-dim);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.voting-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.vote-btn {
+  min-width: 150px;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.vote-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.vote-confirmation,
+.vote-disabled {
+  text-align: center;
+  padding: 1.5rem;
+  border: 2px solid var(--bunker-border);
+  background: var(--bunker-darker);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.vote-confirmation {
+  color: var(--bunker-success);
+  border-color: var(--bunker-success);
+}
+
+.vote-disabled {
+  color: var(--bunker-text-dim);
+}
+
+.voting-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-info {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--bunker-text);
+  font-family: 'Orbitron', monospace;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bunker-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bunker-glow), var(--bunker-accent));
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: progressSweep 2s ease-in-out infinite;
+}
+
+@keyframes progressSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.voting-players h4 {
+  font-family: 'Orbitron', monospace;
+  color: var(--bunker-glow);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.voters-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.voter-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--bunker-darker);
+  border: 1px solid var(--bunker-border);
+}
+
+.voter-name {
+  color: var(--bunker-text);
+  font-weight: 500;
+}
+
+.voter-status {
+  color: var(--bunker-text-dim);
+  font-size: 0.9rem;
+}
+
+/* Адаптивность для карточек */
+@media (max-width: 768px) {
+  .character-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .voting-container {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .voting-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .vote-btn {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .voters-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-trait {
+    min-height: auto;
+  }
+  
+  .trait-content {
+    min-height: 60px;
+    padding: 0.8rem;
+  }
+  
+  .character-summary {
+    padding: 1rem;
+  }
+  
+  .voting-header h3 {
+    font-size: 1.5rem;
+  }
+  
+  .voting-question p {
+    font-size: 1rem;
+  }
+}
